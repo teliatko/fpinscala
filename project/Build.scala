@@ -12,7 +12,7 @@ object FPInScalaBuild extends Build {
             base = file("."),
             settings = opts ++ Seq(
               onLoadMessage ~= (_ + nio2check())
-            )) aggregate (chapterCode, exercises, answers)
+            )) aggregate (chapterCode, exercises, answers, my)
   lazy val chapterCode =
     Project(id = "chapter-code",
             base = file("chaptercode"),
@@ -24,6 +24,10 @@ object FPInScalaBuild extends Build {
   lazy val answers =
     Project(id = "answers",
             base = file("answers"),
+            settings = opts)
+  lazy val my =
+    Project(id = "my",
+            base = file("my"),
             settings = opts)
 
   def nio2check(): String = {
